@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Router} from "react-router-dom";
+import {createBrowserHistory} from "history";
+import Routes from "./routes";
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
+const history = createBrowserHistory()
+
 ReactDOM.render(
-  <React.StrictMode>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <Router history={history}>
+            <Routes/>
+        </Router>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
