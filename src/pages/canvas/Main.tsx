@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import axios from "axios";
-import {Element} from "../interface/entity"
-import {ElementType} from "../interface/enum";
-import {generateUUID} from "../utils";
+import {Element} from "../../interface/entity"
+import {ElementType} from "../../interface/enum";
+import {generateUUID} from "../../utils";
+import HeaderPanel from "./header/HeaderPanel";
 
 const initElementList: Element[] = []
 
@@ -73,7 +74,12 @@ export default function Main(): JSX.Element {
     }
 
     return (
-        <></>
+        <MainPanel>
+            <HeaderPanel panelShow={panelShow} setPanelShow={setPanelShow}/>
+            <EditMain>
+
+            </EditMain>
+        </MainPanel>
     )
 }
 const MainPanel = styled.div`

@@ -1,8 +1,8 @@
 import React from "react";
 import {Route, Switch} from "react-router-dom";
 
-const Login = React.lazy(() => import("../pages/Login"))
-const Main = React.lazy(() => import("../pages/Main"))
+const Login = React.lazy(() => import("../pages/login/Login"))
+const Main = React.lazy(() => import("../pages/canvas/Main"))
 
 export default function Routes(): JSX.Element {
     return (

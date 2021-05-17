@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import axios from "axios";
 import {History, LocationState} from "history";
-import {Button} from "../packages/button";
-import LoginBackgroundImage from "../assets/image/login-background.png";
+import {Button} from "../../packages/button";
+import {LoginBackgroundImage} from "../../assets/image";
 
 export default function Login(props: {
     history: History<LocationState>
