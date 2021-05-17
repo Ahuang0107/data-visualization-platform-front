@@ -87,7 +87,9 @@ export default function Main(): JSX.Element {
             <HeaderPanel panelShow={panelShow} setPanelShow={setPanelShow}/>
             <EditMain>
                 <LayerPanel show={panelShow.layer}
-                            elementList={elementList}/>
+                            elementList={elementList}
+                            focusElement={focusElement}
+                            setFocusElement={setFocusElement}/>
                 <ComponentPanel show={panelShow.component}
                                 addElement={addElement}/>
                 <EditPanel property={property}

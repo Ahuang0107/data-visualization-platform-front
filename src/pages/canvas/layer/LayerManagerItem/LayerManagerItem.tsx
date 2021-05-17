@@ -8,14 +8,19 @@ export default function LayerManagerItem(props: {
     element: Element
     show?: boolean
     retract?: number
+    focusElement: Element | any
+    setFocusElement: React.Dispatch<React.SetStateAction<Element>>
 }): JSX.Element {
+    const {focusElement, setFocusElement} = props
     const [showSubItem, setShowSubItem] = useState<boolean>(false)
     if (props.element.type === ElementType.FOLDER) {
         const subItemNodes = props.element.subItem?.map((element, index) => (
             <LayerManagerItem key={index}
                               show={showSubItem}
                               element={element}
-                              retract={(props.retract ?? 0) + 10}/>
+                              retract={(props.retract ?? 0) + 10}
+                              focusElement={focusElement}
+                              setFocusElement={setFocusElement}/>
         ))
         return (
             <>
@@ -33,7 +38,9 @@ export default function LayerManagerItem(props: {
         return (
             <LayerManagerSubItem element={props.element}
                                  show={props.show}
-                                 retract={props.retract ?? 0}/>
+                                 retract={props.retract ?? 0}
+                                 focusElement={focusElement}
+                                 setFocusElement={setFocusElement}/>
         )
     }
     return (

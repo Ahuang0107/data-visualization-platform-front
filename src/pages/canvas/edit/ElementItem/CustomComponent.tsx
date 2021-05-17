@@ -27,7 +27,6 @@ export default function CustomComponent(props: {
     }, [element])
     useEffect(() => {
         if (focusElement.primaryKey === element.primaryKey) {
-            setElement(focusElement)
             setShowDashed(true)
         } else {
             setShowDashed(false)
