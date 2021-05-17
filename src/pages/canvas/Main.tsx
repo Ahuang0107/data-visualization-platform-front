@@ -7,6 +7,9 @@ import {generateUUID} from "../../utils";
 import HeaderPanel from "./header/HeaderPanel";
 import LayerPanel from "./layer/LayerPanel";
 import ComponentPanel from "./component/ComponentPanel";
+import EditPanel from "./edit/EditPanel";
+import ConfigPanel from "./config/ConfigPanel";
+import Drawer from "../drawer/Drawer";
 
 const initElementList: Element[] = []
 
@@ -87,6 +90,16 @@ export default function Main(): JSX.Element {
                             elementList={elementList}/>
                 <ComponentPanel show={panelShow.component}
                                 addElement={addElement}/>
+                <EditPanel property={property}
+                           elementList={elementList}
+                           focusElement={focusElement}
+                           setFocusElement={setFocusElement}
+                           updateElementNode={updateElementNode}/>
+                <ConfigPanel show={panelShow.config}
+                             focusElement={focusElement}
+                             updateElementNode={updateElementNode}
+                             setDrawerShow={setDrawerShow}/>
+                {drawerShow ? <Drawer setDrawerShow={setDrawerShow}/> : null}
             </EditMain>
         </MainPanel>
     )
