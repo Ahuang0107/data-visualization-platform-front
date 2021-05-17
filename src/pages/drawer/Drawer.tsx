@@ -5,6 +5,7 @@ import {RequestMethod} from "../../interface/enum";
 import StripButton from "../canvas/config/DatabasePages/button/StripButton";
 import {DatasourceTypeOption, RequestTypeOption} from "../../interface/data";
 import Select from "../canvas/config/ConfigPages/form/Select";
+import JsonViewer from "./JsonViewer";
 
 export default function Drawer(props: {
     setDrawerShow: Dispatch<SetStateAction<boolean>>
@@ -13,7 +14,7 @@ export default function Drawer(props: {
     const [dataSourceType, setDatasourceType] = useState(1)
     const [requestType, setRequestType] = useState(1)
     const [url, setUrl] = useState("")
-    const [responseData, setResponseData] = useState(404)
+    const [responseData, setResponseData] = useState({})
     const updateDatasourceType = function (value: number | string | boolean) {
         if (typeof value == "string") {
             setDatasourceType(parseInt(value))
@@ -55,8 +56,7 @@ export default function Drawer(props: {
                 axios.get(url)
                     .then(function (response) {
                         if (response.status == 200) {
-                            console.log(response.data)
-                            setResponseData(response.status)
+                            setResponseData(response.data)
                         }
                     })
                     .catch(function (error) {
@@ -112,9 +112,7 @@ export default function Drawer(props: {
                             <span>测试请求数据</span>
                         </StripButton>
                     </DSApi>
-                    <DSApi>
-                        <p>{responseData}</p>
-                    </DSApi>
+                    <JsonViewer code={responseData}/>
                 </DrawerBody>
             </DrawerMain>
         </DrawerWrap>
@@ -169,7 +167,7 @@ const DrawerBody = styled.div`
   margin: 0 -20px;
   height: 100%;
   padding: 0 20px 80px 20px;
-  overflow: auto;
+  overflow-y: scroll;
 `
 const StepTitle = styled.div`
   position: relative;
