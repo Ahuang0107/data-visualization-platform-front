@@ -1,16 +1,58 @@
 import React from "react";
 import styled from "styled-components";
 import {Element} from "../../../interface/entity";
+import LayerManagerItem from "./LayerManagerItem/LayerManagerItem";
+import SquareButton from "./button/SquareButton";
+import {
+    HideIcon,
+    LayerDownBottomIcon,
+    LayerDownIcon,
+    LayerUpIcon,
+    LayerUpTopIcon,
+    LockIcon,
+    ToFolderIcon,
+    TrashIcon
+} from "../../../assets/icon";
 
 export default function LayerPanel(props: {
     show?: boolean
     elementList?: Element[] | null
 }): JSX.Element {
-
+    const layerElementGroup = props.elementList?.map((element, index) => (
+        <LayerManagerItem key={index} element={element} show={true}/>
+    ))
     return (
-        <>
-
-        </>
+        <LayerPanelWrap show={props.show}>
+            <LayerManager>
+                <LayerManagerTop>
+                    <LayerTitle>图层</LayerTitle>
+                    <LayerManagerLayoutSelector>
+                    </LayerManagerLayoutSelector>
+                </LayerManagerTop>
+                <LayerToolbarTop>
+                    <SquareButton>
+                        <LayerUpIcon/></SquareButton>
+                    <SquareButton>
+                        <LayerDownIcon/>
+                    </SquareButton>
+                    <SquareButton>
+                        <LayerUpTopIcon/>
+                    </SquareButton>
+                    <SquareButton>
+                        <LayerDownBottomIcon/>
+                    </SquareButton>
+                </LayerToolbarTop>
+                <LayerManagerWrap>
+                    {layerElementGroup}
+                </LayerManagerWrap>
+                <LayerToolbarBottom>
+                    <ToFolderIcon/>
+                    <TrashIcon/>
+                    <LockIcon/>
+                    <HideIcon/>
+                </LayerToolbarBottom>
+            </LayerManager>
+        </LayerPanelWrap>
     )
 }
 const LayerPanelWrap = styled.div<{

@@ -5,6 +5,7 @@ import {Element} from "../../interface/entity"
 import {ElementType} from "../../interface/enum";
 import {generateUUID} from "../../utils";
 import HeaderPanel from "./header/HeaderPanel";
+import LayerPanel from "./layer/LayerPanel";
 
 const initElementList: Element[] = []
 
@@ -77,7 +78,7 @@ export default function Main(): JSX.Element {
         <MainPanel>
             <HeaderPanel panelShow={panelShow} setPanelShow={setPanelShow}/>
             <EditMain>
-
+                <LayerPanel elementList={elementList} show={panelShow.layer}/>
             </EditMain>
         </MainPanel>
     )
