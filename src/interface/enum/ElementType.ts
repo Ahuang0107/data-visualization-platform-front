@@ -2,7 +2,7 @@
  * 元素的类型
  * 因为想用数字枚举类型但是需要跟后端保持一致，后端采用kotlin不支持数字枚举类型这样使用。
  */
-export declare enum ElementType {
+export enum ElementType {
     SINGLE_IMAGE = "SINGLE_IMAGE",
     COLOR_BLOCK = "COLOR_BLOCK",
     GENERAL_TITLE = "GENERAL_TITLE",

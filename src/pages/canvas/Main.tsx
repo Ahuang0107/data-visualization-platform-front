@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import axios from "axios";
 import {Element} from "../../interface/entity"
@@ -6,6 +6,7 @@ import {ElementType} from "../../interface/enum";
 import {generateUUID} from "../../utils";
 import HeaderPanel from "./header/HeaderPanel";
 import LayerPanel from "./layer/LayerPanel";
+import ComponentPanel from "./component/ComponentPanel";
 
 const initElementList: Element[] = []
 
@@ -24,6 +25,10 @@ export default function Main(): JSX.Element {
     const [focusElement, setFocusElement] = useState({})
     //管理抽屉面板的展开
     const [drawerShow, setDrawerShow] = useState(true)
+
+    useEffect(() => {
+        getElementListData()
+    }, [])
 
     // 更新画布元素
     function updateElementNode(data: Element) {
@@ -78,7 +83,10 @@ export default function Main(): JSX.Element {
         <MainPanel>
             <HeaderPanel panelShow={panelShow} setPanelShow={setPanelShow}/>
             <EditMain>
-                <LayerPanel elementList={elementList} show={panelShow.layer}/>
+                <LayerPanel show={panelShow.layer}
+                            elementList={elementList}/>
+                <ComponentPanel show={panelShow.component}
+                                addElement={addElement}/>
             </EditMain>
         </MainPanel>
     )

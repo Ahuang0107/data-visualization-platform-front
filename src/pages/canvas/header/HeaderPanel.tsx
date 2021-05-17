@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import RectangleButton from "./RectangleButton";
+import RectangleButton from "./button/RectangleButton";
 import {
     BrowserIcon,
     ComponentPanelIcon,
