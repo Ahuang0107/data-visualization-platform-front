@@ -74,6 +74,7 @@ export default function Drawer(props: {
             <DrawerMain>
                 <DrawerTitle>
                     <DatasourcePanelTitle>设置数据源</DatasourcePanelTitle>
+                    {/*<CloseIcon/>*/}
                 </DrawerTitle>
                 <DrawerBody>
                     <StepTitle>数据源</StepTitle>
@@ -112,7 +113,16 @@ export default function Drawer(props: {
                             <span>测试请求数据</span>
                         </StripButton>
                     </DSApi>
-                    <JsonViewer code={responseData}/>
+                    <DSApi>
+                        <p>相应结果：</p>
+                        <DatasourceSelect>
+                            <DataInputNumber>
+                                <DataShowWrap>
+                                    <JsonViewer code={responseData}/>
+                                </DataShowWrap>
+                            </DataInputNumber>
+                        </DatasourceSelect>
+                    </DSApi>
                 </DrawerBody>
             </DrawerMain>
         </DrawerWrap>
@@ -210,6 +220,11 @@ const DatasourceSelect = styled.div`
 `
 const DSApi = styled.div`
   margin: 10px 0;
+`
+const DataShowWrap = styled.div`
+  width: 100%;
+  height: 200px;
+  overflow-y: scroll;
 `
 const DataInputNumber = styled.div`
   background: var(--datav-gui-component-background-color);

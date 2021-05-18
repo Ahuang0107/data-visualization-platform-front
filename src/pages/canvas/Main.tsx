@@ -27,7 +27,7 @@ export default function Main(): JSX.Element {
     //管理画布上当前聚焦的元素
     const [focusElement, setFocusElement] = useState({})
     //管理抽屉面板的展开
-    const [drawerShow, setDrawerShow] = useState(true)
+    const [drawerShow, setDrawerShow] = useState(false)
 
     useEffect(() => {
         getElementListData()

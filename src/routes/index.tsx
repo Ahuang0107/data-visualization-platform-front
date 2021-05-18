@@ -2,6 +2,7 @@ import React from "react";
 import {Route, Switch} from "react-router-dom";
 
 const Login = React.lazy(() => import("../pages/login/Login"))
+const Home = React.lazy(() => import("../pages/home/Home"))
 const Main = React.lazy(() => import("../pages/canvas/Main"))
 
 export default function Routes(): JSX.Element {
@@ -13,6 +14,7 @@ export default function Routes(): JSX.Element {
         >
             <Switch>
                 <Route exact path="/" component={Login}/>
+                <Route exact path="/Home" component={Home}/>
                 <Route exact path="/Main" component={Main}/>
             </Switch>
         </React.Suspense>
