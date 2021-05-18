@@ -49,7 +49,10 @@ export default function Login(props: {
                             .then(function (response) {
                                 if (response.status === 200) {
                                     if (response.data) {
-                                        props.history.push('Main')
+                                        localStorage.setItem("userId", response.data.id)
+                                        props.history.push('Home')
+                                    } else {
+                                        alert("用户名或者密码错误")
                                     }
                                 }
                             })

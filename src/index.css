@@ -33,6 +33,21 @@ textarea {
   Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+::-webkit-scrollbar {
+  display: block;
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #434b55;
+  border: 1px solid #434b55;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--datav-scroll-track-bg);
+}
+
 :root {
   --datav-panel-color: #1d2127;
   --datav-panel-item-bg: #1b1f25;

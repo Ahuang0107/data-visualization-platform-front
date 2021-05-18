@@ -6,7 +6,7 @@ export const LayerManagerItemWrap = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  color: #bcc9d4;
+  color: var(--datav-font-color);
   background: var(--datav-panel-item-bg);
   transition: .1s ease-in-out;
   cursor: pointer;
@@ -14,7 +14,6 @@ export const LayerManagerItemWrap = styled.div`
   overflow: hidden;
 
   &:hover {
-    color: #fff;
     background: var(--datav-item-hover-color);
   }
 `

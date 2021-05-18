@@ -17,9 +17,16 @@ import {
 export default function LayerPanel(props: {
     show?: boolean
     elementList?: Element[] | null
+    focusElement: Element | any
+    setFocusElement: React.Dispatch<React.SetStateAction<Element>>
 }): JSX.Element {
+    const {focusElement, setFocusElement} = props
     const layerElementGroup = props.elementList?.map((element, index) => (
-        <LayerManagerItem key={index} element={element} show={true}/>
+        <LayerManagerItem key={index}
+                          show={true}
+                          element={element}
+                          focusElement={focusElement}
+                          setFocusElement={setFocusElement}/>
     ))
     return (
         <LayerPanelWrap show={props.show}>
