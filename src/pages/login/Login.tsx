@@ -45,14 +45,15 @@ export default function Login(props: {
                 </Col>
                 <Col>
                     <Button onClick={() => {
-                        axios.post('http://localhost:9090/api/user', loginForm)
+                        axios.post('http://localhost:9090/api/user/login', loginForm)
                             .then(function (response) {
                                 if (response.status === 200) {
-                                    if (response.data) {
-                                        localStorage.setItem("userId", response.data.id)
+                                    if (response.data.code === 200) {
+                                        console.log(response.data)
+                                        localStorage.setItem("userId", response.data.data)
                                         props.history.push('Home')
                                     } else {
-                                        alert("用户名或者密码错误")
+                                        alert(response.data.message)
                                     }
                                 }
                             })
