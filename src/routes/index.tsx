@@ -1,5 +1,6 @@
 import React from "react";
 import {Route, Switch} from "react-router-dom";
+import Fallback from "./Fallback";
 
 const Login = React.lazy(() => import("../pages/login/Login"))
 const Home = React.lazy(() => import("../pages/home/Home"))
@@ -10,7 +11,7 @@ export default function Routes(): JSX.Element {
     return (
         <React.Suspense
             fallback={
-                <div>fallback</div>
+                <Fallback/>
             }
         >
             <Switch>

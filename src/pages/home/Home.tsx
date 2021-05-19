@@ -13,6 +13,7 @@ export default function Home(props: {
     const [canvasInfoList, setCanvasInfoList] = useState<CanvasInfo[]>([])
     useEffect(() => {
         getCanvasList()
+        document.title = localStorage.getItem("userName") as string
     }, [])
 
     function getCanvasList() {

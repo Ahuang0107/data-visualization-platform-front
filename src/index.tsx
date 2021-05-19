@@ -8,6 +8,7 @@ import reportWebVitals from './reportWebVitals';
 
 const history = createBrowserHistory()
 
+document.title = '数据可视化平台'
 ReactDOM.render(
     <React.StrictMode>
         <Router history={history}>

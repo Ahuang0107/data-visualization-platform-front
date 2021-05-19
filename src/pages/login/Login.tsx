@@ -5,6 +5,7 @@ import {History, LocationState} from "history";
 import {Button} from "../../packages/button";
 import {LoginBackgroundImage} from "../../assets/image";
 
+document.title += ' - 登录'
 export default function Login(props: {
     history: History<LocationState>
 }): JSX.Element {
@@ -50,6 +51,7 @@ export default function Login(props: {
                                 if (response.status === 200) {
                                     if (response.data.code === 200) {
                                         localStorage.setItem("userId", response.data.data)
+                                        localStorage.setItem("userName", loginForm.username)
                                         props.history.push('/Home')
                                     } else {
                                         alert(response.data.message)

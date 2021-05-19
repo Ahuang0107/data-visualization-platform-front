@@ -32,6 +32,9 @@ export default function Main(): JSX.Element {
     useEffect(() => {
         getElementListData()
     }, [])
+    useEffect(() => {
+        document.title = property?.name as string
+    }, [property])
 
     // 更新画布元素
     function updateElementNode(data: Element) {
@@ -70,7 +73,6 @@ export default function Main(): JSX.Element {
 
     // 根据大屏ID获取大屏数据
     function getElementListData() {
-        console.log(id)
         axios.get('http://localhost:9090/api/canvas/' + id)
             .then(function (response) {
                 if (response.status == 200) {
