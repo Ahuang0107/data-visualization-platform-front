@@ -15,7 +15,7 @@ export default function Routes(): JSX.Element {
             <Switch>
                 <Route exact path="/" component={Login}/>
                 <Route exact path="/Home" component={Home}/>
-                <Route exact path="/Main" component={Main}/>
+                <Route exact path="/Main/:id" component={Main}/>
             </Switch>
         </React.Suspense>
     )

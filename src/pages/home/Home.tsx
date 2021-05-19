@@ -5,8 +5,11 @@ import CardContainer from "./card/CardContainer";
 import Card from "./card/Card";
 import axios from "axios";
 import {CanvasInfo} from "../../interface/entity/CanvasInfo";
+import {History, LocationState} from "history";
 
-export default function Home(props: {}): JSX.Element {
+export default function Home(props: {
+    history: History<LocationState>
+}): JSX.Element {
     const [canvasInfoList, setCanvasInfoList] = useState<CanvasInfo[]>([])
     useEffect(() => {
         getCanvasList()
@@ -37,7 +40,9 @@ export default function Home(props: {}): JSX.Element {
             <HeaderPanel/>
             <MainWrap>
                 <CardContainer>
-                    {canvasInfoList.map((item, index) => <Card key={index} name={item.property.name}/>)}
+                    {canvasInfoList.map((item, index) =>
+                        <Card key={index} content={item} history={props.history}/>
+                    )}
                 </CardContainer>
             </MainWrap>
         </HomeWrap>

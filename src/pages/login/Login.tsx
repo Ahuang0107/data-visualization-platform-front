@@ -49,9 +49,8 @@ export default function Login(props: {
                             .then(function (response) {
                                 if (response.status === 200) {
                                     if (response.data.code === 200) {
-                                        console.log(response.data)
                                         localStorage.setItem("userId", response.data.data)
-                                        props.history.push('Home')
+                                        props.history.push('/Home')
                                     } else {
                                         alert(response.data.message)
                                     }

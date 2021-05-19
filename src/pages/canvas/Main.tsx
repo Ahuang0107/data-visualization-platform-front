@@ -9,9 +9,11 @@ import LayerPanel from "./layer/LayerPanel";
 import ComponentPanel from "./component/ComponentPanel";
 import EditPanel from "./edit/EditPanel";
 import ConfigPanel from "./config/ConfigPanel";
+import {useParams} from "react-router-dom";
 import Drawer from "../drawer/Drawer";
 
 export default function Main(): JSX.Element {
+    let {id} = useParams<{ id: string }>()
     //管理大屏编辑页面的面板展开
     const [panelShow, setPanelShow] = useState({
         layer: true,
@@ -68,11 +70,16 @@ export default function Main(): JSX.Element {
 
     // 根据大屏ID获取大屏数据
     function getElementListData() {
-        axios.get('http://localhost:9090/api/canvas/6087e13c5e6bb67f72435aea')
+        console.log(id)
+        axios.get('http://localhost:9090/api/canvas/' + id)
             .then(function (response) {
                 if (response.status == 200) {
-                    setProperty(response.data.property)
-                    setElementList(response.data.elements)
+                    if (response.data.code === 200) {
+                        setProperty(response.data.data.property)
+                        setElementList(response.data.data.elements)
+                    } else {
+                        alert("获取项目详情出错")
+                    }
                 }
             })
             .catch(function (error) {

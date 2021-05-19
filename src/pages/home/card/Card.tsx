@@ -1,14 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import {CanvasInfo} from "../../../interface/entity/CanvasInfo";
+import {History, LocationState} from "history";
 
 export default function Card(props: {
+    history: History<LocationState>
     children?: React.ReactNode
-    name: string
+    content: CanvasInfo
 }): JSX.Element {
 
     return (
-        <CardWrap>
-            <h1>{props.name}</h1>
+        <CardWrap onClick={() => {
+            props.history.push('/Main/' + props.content.id)
+        }}>
+            <h1>{props.content.property.name}</h1>
             {/*{props.children}*/}
         </CardWrap>
     )
