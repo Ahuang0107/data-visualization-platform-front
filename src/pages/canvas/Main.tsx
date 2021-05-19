@@ -38,7 +38,6 @@ export default function Main(): JSX.Element {
 
     // 更新画布元素
     function updateElementNode(data: Element) {
-        console.log("gengxinl")
         setFocusElement(data)
         const findElementById = function (_treeData: Element) {
             if (_treeData.primaryKey == data.primaryKey) {
