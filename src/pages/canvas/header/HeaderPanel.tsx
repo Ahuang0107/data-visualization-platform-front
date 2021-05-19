@@ -11,6 +11,8 @@ import {
 } from "../../../assets/icon";
 
 export default function HeaderPanel(props: {
+    name?: String,
+    projectId?: String,
     panelShow: {
         layer: boolean,
         component: boolean,
@@ -45,7 +47,9 @@ export default function HeaderPanel(props: {
                     <ConfigPanelIcon/>
                 </RectangleButton>
             </WrapperButton>
-            <Title>Data-Visualization-Platform</Title>
+            <TitleWrap>
+                <Title>{props.name}</Title>
+            </TitleWrap>
             <WrapperButton>
                 {/*保存按钮*/}
                 <RectangleButton onClick={() => {
@@ -55,7 +59,7 @@ export default function HeaderPanel(props: {
                 </RectangleButton>
                 {/*浏览按钮*/}
                 <RectangleButton onClick={() => {
-                    console.log("点击浏览按钮")
+                    window.open('http://localhost:3000/Preview/' + props.projectId)
                 }}>
                     <BrowserIcon/>
                 </RectangleButton>
@@ -85,6 +89,9 @@ const WrapperHeader = styled.div`
 const WrapperButton = styled.div`
   margin: 0 15px;
   display: flex;
+`
+const TitleWrap = styled.div`
+
 `
 const Title = styled.p`
   font-size: 14px;

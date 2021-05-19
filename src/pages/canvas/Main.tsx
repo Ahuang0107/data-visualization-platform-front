@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import axios from "axios";
-import {Element} from "../../interface/entity"
+import {Element, Property} from "../../interface/entity"
 import {ElementType} from "../../interface/enum";
 import {generateUUID} from "../../utils";
 import HeaderPanel from "./header/HeaderPanel";
@@ -21,7 +21,7 @@ export default function Main(): JSX.Element {
         config: true
     })
     //管理画布本身的属性
-    const [property, setProperty] = useState({})
+    const [property, setProperty] = useState<Property>()
     //管理画布上的元素列表
     const [elementList, setElementList] = useState<Element[]>([])
     //管理画布上当前聚焦的元素
@@ -89,7 +89,10 @@ export default function Main(): JSX.Element {
 
     return (
         <MainPanel>
-            <HeaderPanel panelShow={panelShow} setPanelShow={setPanelShow}/>
+            <HeaderPanel projectId={id}
+                         name={property?.name}
+                         panelShow={panelShow}
+                         setPanelShow={setPanelShow}/>
             <EditMain>
                 <LayerPanel show={panelShow.layer}
                             elementList={elementList}
