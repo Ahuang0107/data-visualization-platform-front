@@ -6,8 +6,8 @@ import Canvas from "./ElementItem/Canvas";
 export default function EditPanel(props: {
     property: Property | any
     elementList: Element[] | null
-    focusElement: Element | any
-    setFocusElement: React.Dispatch<React.SetStateAction<Element>>
+    focusElement: Element | undefined
+    setFocusElement: React.Dispatch<React.SetStateAction<Element | undefined>>
     updateElementNode: (data: Element) => void
 }): JSX.Element {
     const {focusElement, setFocusElement, updateElementNode} = props

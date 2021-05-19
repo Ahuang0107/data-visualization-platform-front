@@ -17,8 +17,8 @@ import {
 export default function LayerPanel(props: {
     show?: boolean
     elementList?: Element[] | null
-    focusElement: Element | any
-    setFocusElement: React.Dispatch<React.SetStateAction<Element>>
+    focusElement: Element | undefined
+    setFocusElement: React.Dispatch<React.SetStateAction<Element | undefined>>
 }): JSX.Element {
     const {focusElement, setFocusElement} = props
     const layerElementGroup = props.elementList?.map((element, index) => (

@@ -14,8 +14,8 @@ import {removePx} from "../../../../utils";
 
 export default function CustomComponent(props: {
     element: Element
-    focusElement: Element | any
-    setFocusElement?: React.Dispatch<React.SetStateAction<Element>>
+    focusElement: Element | undefined
+    setFocusElement: React.Dispatch<React.SetStateAction<Element | undefined>>
     updateElementNode: (data: Element) => void
 }): JSX.Element {
     const {focusElement, setFocusElement, updateElementNode} = props
@@ -26,7 +26,7 @@ export default function CustomComponent(props: {
         updateElementNode(element)
     }, [element])
     useEffect(() => {
-        if (focusElement.primaryKey === element.primaryKey) {
+        if (focusElement?.primaryKey === element.primaryKey) {
             setShowDashed(true)
         } else {
             setShowDashed(false)

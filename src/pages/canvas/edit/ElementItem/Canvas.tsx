@@ -6,8 +6,8 @@ import CustomComponent from "./CustomComponent";
 export default function Canvas(props: {
     property: Property | any
     elements: Element[] | null
-    focusElement: Element | any
-    setFocusElement?: React.Dispatch<React.SetStateAction<Element>>
+    focusElement: Element | undefined
+    setFocusElement: React.Dispatch<React.SetStateAction<Element | undefined>>
     updateElementNode: (data: Element) => void
 }): JSX.Element {
     const {focusElement, setFocusElement, updateElementNode} = props

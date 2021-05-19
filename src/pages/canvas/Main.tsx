@@ -25,12 +25,12 @@ export default function Main(): JSX.Element {
     //管理画布上的元素列表
     const [elementList, setElementList] = useState<Element[]>([])
     //管理画布上当前聚焦的元素
-    const [focusElement, setFocusElement] = useState({})
+    const [focusElement, setFocusElement] = useState<Element>()
     //管理抽屉面板的展开
     const [drawerShow, setDrawerShow] = useState(false)
 
     useEffect(() => {
-        getElementListData()
+        getCanvasData()
     }, [])
     useEffect(() => {
         document.title = property?.name as string
@@ -38,6 +38,7 @@ export default function Main(): JSX.Element {
 
     // 更新画布元素
     function updateElementNode(data: Element) {
+        console.log("gengxinl")
         setFocusElement(data)
         const findElementById = function (_treeData: Element) {
             if (_treeData.primaryKey == data.primaryKey) {
@@ -72,7 +73,7 @@ export default function Main(): JSX.Element {
     }
 
     // 根据大屏ID获取大屏数据
-    function getElementListData() {
+    function getCanvasData() {
         axios.get('http://localhost:9090/api/canvas/' + id)
             .then(function (response) {
                 if (response.status == 200) {

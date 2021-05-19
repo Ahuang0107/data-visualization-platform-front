@@ -6,7 +6,7 @@ import ConfigContentCanvas from "./ConfigContent/ConfigContentCanvas";
 
 export default function ConfigPanel(props: {
     show?: boolean
-    focusElement: Element | any
+    focusElement: Element | undefined
     updateElementNode: (data: Element) => void
     setDrawerShow: Dispatch<SetStateAction<boolean>>
 }): JSX.Element {
@@ -16,7 +16,7 @@ export default function ConfigPanel(props: {
             <ConfigManagerWrap>
                 <ConfigManager>
                     {
-                        focusElement.hasOwnProperty('primaryKey') ?
+                        focusElement?.hasOwnProperty('primaryKey') ?
                             <ConfigContentComp focusElement={focusElement}
                                                updateElementNode={updateElementNode}
                                                setDrawerShow={setDrawerShow}/> :

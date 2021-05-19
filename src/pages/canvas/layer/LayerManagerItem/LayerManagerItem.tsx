@@ -8,8 +8,8 @@ export default function LayerManagerItem(props: {
     element: Element
     show?: boolean
     retract?: number
-    focusElement: Element | any
-    setFocusElement: React.Dispatch<React.SetStateAction<Element>>
+    focusElement: Element | undefined
+    setFocusElement: React.Dispatch<React.SetStateAction<Element | undefined>>
 }): JSX.Element {
     const {focusElement, setFocusElement} = props
     const [showSubItem, setShowSubItem] = useState<boolean>(false)
