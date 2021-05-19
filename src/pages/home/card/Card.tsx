@@ -1,11 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Card(props: {}): JSX.Element {
+export default function Card(props: {
+    children?: React.ReactNode
+    name: string
+}): JSX.Element {
 
     return (
         <CardWrap>
-            card
+            <h1>{props.name}</h1>
+            {/*{props.children}*/}
         </CardWrap>
     )
 }

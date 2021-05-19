@@ -11,8 +11,6 @@ import EditPanel from "./edit/EditPanel";
 import ConfigPanel from "./config/ConfigPanel";
 import Drawer from "../drawer/Drawer";
 
-const initElementList: Element[] = []
-
 export default function Main(): JSX.Element {
     //管理大屏编辑页面的面板展开
     const [panelShow, setPanelShow] = useState({
@@ -23,7 +21,7 @@ export default function Main(): JSX.Element {
     //管理画布本身的属性
     const [property, setProperty] = useState({})
     //管理画布上的元素列表
-    const [elementList, setElementList] = useState(initElementList)
+    const [elementList, setElementList] = useState<Element[]>([])
     //管理画布上当前聚焦的元素
     const [focusElement, setFocusElement] = useState({})
     //管理抽屉面板的展开
