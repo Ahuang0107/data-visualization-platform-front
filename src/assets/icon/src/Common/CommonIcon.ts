@@ -32,8 +32,8 @@ export const AddIcon = styled(IoMdAddCircle)`
   color: var(--datav-gray-color);
 `
 export const BackIcon = styled(IoIosArrowBack)`
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   padding: 2px;
 
   &:hover {

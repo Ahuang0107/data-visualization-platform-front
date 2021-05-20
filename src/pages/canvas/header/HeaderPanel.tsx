@@ -95,9 +95,11 @@ const WrapperButton = styled.div`
   display: flex;
 `
 const TitleWrap = styled.div`
-
+  display: flex;
+  align-items: center;
 `
-const Title = styled.p`
+const Title = styled.h1`
   font-size: 14px;
   color: inherit;
+  padding-bottom: 2px;
 `
