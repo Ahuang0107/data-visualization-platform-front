@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import RectangleButton from "./button/RectangleButton";
+import RectangleStateButton from "./button/RectangleStateButton";
 import {
     BrowserIcon,
     ComponentPanelIcon,
@@ -9,10 +9,12 @@ import {
     PublishIcon,
     SaveIcon
 } from "../../../assets/icon";
+import RectangleButton from "./button/RectangleButton";
 
 export default function HeaderPanel(props: {
     name?: String,
     projectId?: String,
+    saveCanvas: () => void,
     panelShow: {
         layer: boolean,
         component: boolean,
@@ -24,28 +26,28 @@ export default function HeaderPanel(props: {
         config: boolean
     }>>
 }): JSX.Element {
-    const {setPanelShow, panelShow} = props
+    const {setPanelShow, panelShow, saveCanvas} = props
     return (
         <WrapperHeader>
             <WrapperButton>
                 {/*图层面板展开按钮*/}
-                <RectangleButton onClick={() => {
+                <RectangleStateButton onClick={() => {
                     setPanelShow({...panelShow, layer: !panelShow.layer})
                 }}>
                     <LayerPanelIcon/>
-                </RectangleButton>
+                </RectangleStateButton>
                 {/*组件面板展开按钮*/}
-                <RectangleButton onClick={() => {
+                <RectangleStateButton onClick={() => {
                     setPanelShow({...panelShow, component: !panelShow.component})
                 }}>
                     <ComponentPanelIcon/>
-                </RectangleButton>
+                </RectangleStateButton>
                 {/*属性面板展开按钮*/}
-                <RectangleButton onClick={() => {
+                <RectangleStateButton onClick={() => {
                     setPanelShow({...panelShow, config: !panelShow.config})
                 }}>
                     <ConfigPanelIcon/>
-                </RectangleButton>
+                </RectangleStateButton>
             </WrapperButton>
             <TitleWrap>
                 <Title>{props.name}</Title>
@@ -53,7 +55,7 @@ export default function HeaderPanel(props: {
             <WrapperButton>
                 {/*保存按钮*/}
                 <RectangleButton onClick={() => {
-                    console.log("点击保存按钮")
+                    saveCanvas()
                 }}>
                     <SaveIcon/>
                 </RectangleButton>

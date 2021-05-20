@@ -36,6 +36,43 @@ export default function Main(): JSX.Element {
         document.title = property?.name as string
     }, [property])
 
+    // 根据大屏ID获取大屏数据
+    function getCanvasData() {
+        axios.get('http://localhost:9090/api/canvas/' + id)
+            .then(function (response) {
+                if (response.status == 200) {
+                    if (response.data.code === 200) {
+                        setProperty(response.data.data.property)
+                        setElementList(response.data.data.elements)
+                    } else {
+                        alert("获取项目详情出错")
+                    }
+                }
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
+    }
+
+    // 保存大屏数据
+    function saveCanvasData() {
+        axios.put('http://localhost:9090/api/canvas/' + id, {
+            userId: localStorage.getItem("userId"),
+            property: property,
+            elements: elementList,
+        }).then(function (response) {
+            if (response.status == 200) {
+                if (response.data.code === 200) {
+                    alert("保存项目成功")
+                } else {
+                    alert("保存项目成功失败")
+                }
+            }
+        }).catch(function (error) {
+            console.log(error)
+        })
+    }
+
     // 更新画布元素
     function updateElementNode(data: Element) {
         setFocusElement(data)
@@ -71,28 +108,11 @@ export default function Main(): JSX.Element {
         setElementList([...elementList, element])
     }
 
-    // 根据大屏ID获取大屏数据
-    function getCanvasData() {
-        axios.get('http://localhost:9090/api/canvas/' + id)
-            .then(function (response) {
-                if (response.status == 200) {
-                    if (response.data.code === 200) {
-                        setProperty(response.data.data.property)
-                        setElementList(response.data.data.elements)
-                    } else {
-                        alert("获取项目详情出错")
-                    }
-                }
-            })
-            .catch(function (error) {
-                console.log(error)
-            })
-    }
-
     return (
         <MainPanel>
-            <HeaderPanel projectId={id}
-                         name={property?.name}
+            <HeaderPanel name={property?.name}
+                         projectId={id}
+                         saveCanvas={saveCanvasData}
                          panelShow={panelShow}
                          setPanelShow={setPanelShow}/>
             <EditMain>

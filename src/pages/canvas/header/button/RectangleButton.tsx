@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import styled from "styled-components";
 
 export default function RectangleButton(props: {
@@ -7,25 +7,19 @@ export default function RectangleButton(props: {
     onClick: React.MouseEventHandler<HTMLButtonElement>
 }): JSX.Element {
     const {onClick} = props
-    //管理按钮被激活的状态
-    const [isActive, setIsActive] = useState(true)
 
     return (
-        <RealButton isActive={isActive}
-                    onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                        onClick(event)
-                        setIsActive(!isActive)
-                    }}>
+        <RealButton onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+            onClick(event)
+        }}>
             {props.children}
         </RealButton>
     )
 }
-const RealButton = styled.button<{
-    isActive: boolean
-}>`
+const RealButton = styled.button`
   width: 40px;
   height: 24px;
-  background-color: ${props => props.isActive ? '#2681ff' : '#303640'};
+  background-color: var(--datav-btn-bg-default);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,6 +29,10 @@ const RealButton = styled.button<{
   cursor: pointer;
 
   &:hover {
-    background-color: ${props => props.isActive ? '#2681ff' : '#303640'};
+    background-color: var(--datav-btn-bg-hover);
+  }
+
+  &:active {
+    background-color: var(--datav-main-color);
   }
 `
