@@ -10,6 +10,7 @@ import BarWithBackgroundConfig from "../ConfigPages/BarWithBackgroundConfig";
 import BarWithBackgroundDatabase from "../DatabasePages/BarWithBackgroundDatabase";
 import ComponentTitle from "../ConfigPages/form/ComponentTitle";
 import ConfigManagerTabs from "../ConfigTab/ConfigManagerTabs";
+import DoughnutChartDatabase from "../DatabasePages/DoughnutChartDatabase";
 
 export default function ConfigContentComp(props: {
     focusElement: Element | any
@@ -60,6 +61,10 @@ export default function ConfigContentComp(props: {
                 return <BarWithBackgroundDatabase element={element}
                                                   updateElementNode={updateElementNode}
                                                   setDrawerShow={setDrawerShow}/>
+            case ElementType.DOUGHNUT_CHART_WITH_ROUNDED_CORNER:
+                return <DoughnutChartDatabase element={element}
+                                              updateElementNode={updateElementNode}
+                                              setDrawerShow={setDrawerShow}/>
             default:
                 return <></>
         }

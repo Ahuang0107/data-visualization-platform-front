@@ -14,6 +14,14 @@ export default function DoughnutChartWithRoundedCorner(props: {
 }): JSX.Element {
     const elementId = props.element.primaryKey.toString()
     const [main, setMain] = useState(document.getElementById(elementId))
+    const data = props.element.doughnutChart?.data ?? [
+        {value: 1048, name: '搜索引擎'},
+        {value: 735, name: '直接访问'},
+        {value: 580, name: '邮件营销'},
+        {value: 484, name: '联盟广告'},
+        {value: 300, name: '视频广告'}
+    ]
+    const name = props.element.doughnutChart?.name ?? "访问来源"
     const option = {
         textStyle: {
             color: '#fff'
@@ -30,7 +38,7 @@ export default function DoughnutChartWithRoundedCorner(props: {
         },
         series: [
             {
-                name: '访问来源',
+                name: name,
                 type: 'pie',
                 radius: ['40%', '70%'],
                 avoidLabelOverlap: false,
@@ -53,13 +61,7 @@ export default function DoughnutChartWithRoundedCorner(props: {
                 labelLine: {
                     show: false
                 },
-                data: [
-                    {value: 1048, name: '搜索引擎'},
-                    {value: 735, name: '直接访问'},
-                    {value: 580, name: '邮件营销'},
-                    {value: 484, name: '联盟广告'},
-                    {value: 300, name: '视频广告'}
-                ]
+                data: data
             }
         ]
     };

@@ -67,4 +67,7 @@ const VersionTag = styled.div`
 `
 const VersionNumber = styled.span`
   color: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `

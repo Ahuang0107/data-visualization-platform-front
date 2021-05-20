@@ -1,5 +1,6 @@
 import {ElementType} from "../enum";
 import {BarWithBackgroundDataType} from "./BarWithBackgroundDataType";
+import {DoughnutChartDataType} from "./DoughnutChartDataType";
 
 /**
  * 组件元素的属性
@@ -45,6 +46,11 @@ export interface Element {
      * 折线柱图的数据结构
      */
     barWithBackground?: BarWithBackgroundDataType
+
+    /**
+     * 饼图的数据结构
+     */
+    doughnutChart?: DoughnutChartDataType
 }
 
 interface GeneralTitleDataType {

@@ -139,6 +139,19 @@ export default function Main(props: {
     }
 
     function updateResponseData(data: any) {
+        switch (focusElement?.type) {
+            case ElementType.BAR_WITH_BACKGROUND:
+                updateBarChartData(data)
+                break
+            case ElementType.DOUGHNUT_CHART_WITH_ROUNDED_CORNER:
+                updatePisChartData(data)
+                break
+        }
+
+    }
+
+    // 更新柱状图的数据
+    function updateBarChartData(data: any) {
         const xAxisData = data.map((item: any) => item.year)
         const yAxisData = data.map((item: any) => item.data)
         let series: {
@@ -168,6 +181,19 @@ export default function Main(props: {
         const newElement: Element = {
             ...focusElement!!,
             barWithBackground: barWithBackgroundData
+        }
+        updateElementNode(newElement)
+    }
+
+    // 更新饼图的数据
+    function updatePisChartData(data: any) {
+        const doughnutChartData = {
+            name: data.name,
+            data: data.data
+        }
+        const newElement: Element = {
+            ...focusElement!!,
+            doughnutChart: doughnutChartData
         }
         updateElementNode(newElement)
     }
