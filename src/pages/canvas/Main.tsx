@@ -34,7 +34,7 @@ export default function Main(props: {
     //管理画布上的元素列表
     const [elementList, setElementList] = useState<Element[]>([])
     //管理画布上当前聚焦的元素
-    const [focusElement, setFocusElement] = useState<Element>()
+    const [focusElement, setFocusElement] = useState<Element | null>(null)
     //管理抽屉面板的展开
     const [drawerShow, setDrawerShow] = useState(false)
 
@@ -194,6 +194,9 @@ export default function Main(props: {
                            updateElementNode={updateElementNode}/>
                 <ConfigPanel show={panelShow.config}
                              focusElement={focusElement}
+                             setFocusElement={setFocusElement}
+                             property={property}
+                             setProperty={setProperty}
                              updateElementNode={updateElementNode}
                              setDrawerShow={setDrawerShow}/>
                 {drawerShow ? <Drawer setDrawerShow={setDrawerShow}

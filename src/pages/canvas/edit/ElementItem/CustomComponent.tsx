@@ -14,8 +14,8 @@ import {removePx} from "../../../../utils";
 
 export default function CustomComponent(props: {
     element: Element
-    focusElement: Element | undefined
-    setFocusElement: React.Dispatch<React.SetStateAction<Element | undefined>>
+    focusElement: Element | null
+    setFocusElement: React.Dispatch<React.SetStateAction<Element | null>>
     updateElementNode: (data: Element) => void
 }): JSX.Element {
     const {focusElement, setFocusElement, updateElementNode} = props

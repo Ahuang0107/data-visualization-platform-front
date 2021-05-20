@@ -1,14 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import {BackIcon} from "../../../../../assets/icon";
+import {Element} from "../../../../../interface/entity";
 
 export default function ComponentTitle(props: {
     name: string
+    setFocusElement: React.Dispatch<React.SetStateAction<Element | null>>
 }): JSX.Element {
+    const {setFocusElement} = props
 
     return (
         <ComponentTitleWrap>
-            <BackIcon/>
+            <BackIcon onClick={() => setFocusElement(null)}/>
             <Title>
                 <TitleName>
                     <AliasName>

@@ -13,10 +13,11 @@ import ConfigManagerTabs from "../ConfigTab/ConfigManagerTabs";
 
 export default function ConfigContentComp(props: {
     focusElement: Element | any
+    setFocusElement: React.Dispatch<React.SetStateAction<Element | null>>
     updateElementNode: (data: Element) => void
     setDrawerShow: Dispatch<SetStateAction<boolean>>
 }): JSX.Element {
-    const {focusElement, updateElementNode, setDrawerShow} = props
+    const {focusElement, setFocusElement, updateElementNode, setDrawerShow} = props
     // 当前显示的tab面板编号
     const [activeTab, setActiveTab] = useState(1)
     // 根据当前聚焦的元素生成对应的属性面板
@@ -70,7 +71,7 @@ export default function ConfigContentComp(props: {
                                updateActiveTab={setActiveTab}/>
             <ConfigManagerBody>
                 <PageConfig>
-                    <ComponentTitle name={focusElement.name}/>
+                    <ComponentTitle name={focusElement.name} setFocusElement={setFocusElement}/>
                     {pageContent}
                 </PageConfig>
             </ConfigManagerBody>

@@ -1,16 +1,19 @@
 import React, {Dispatch, SetStateAction} from "react";
 import styled from "styled-components";
-import {Element} from "../../../interface/entity";
+import {Element, Property} from "../../../interface/entity";
 import ConfigContentComp from "./ConfigContent/ConfigContentComp";
 import ConfigContentCanvas from "./ConfigContent/ConfigContentCanvas";
 
 export default function ConfigPanel(props: {
     show?: boolean
-    focusElement: Element | undefined
+    focusElement: Element | null
+    setFocusElement: React.Dispatch<React.SetStateAction<Element | null>>
+    property: Property
+    setProperty: React.Dispatch<React.SetStateAction<Property>>
     updateElementNode: (data: Element) => void
     setDrawerShow: Dispatch<SetStateAction<boolean>>
 }): JSX.Element {
-    const {focusElement, updateElementNode, setDrawerShow} = props
+    const {focusElement, setFocusElement, property, setProperty, updateElementNode, setDrawerShow} = props
     return (
         <ConfigPanelWrap show={props.show}>
             <ConfigManagerWrap>
@@ -19,8 +22,9 @@ export default function ConfigPanel(props: {
                         focusElement?.hasOwnProperty('primaryKey') ?
                             <ConfigContentComp focusElement={focusElement}
                                                updateElementNode={updateElementNode}
+                                               setFocusElement={setFocusElement}
                                                setDrawerShow={setDrawerShow}/> :
-                            <ConfigContentCanvas/>
+                            <ConfigContentCanvas property={property} setProperty={setProperty}/>
                     }
                 </ConfigManager>
             </ConfigManagerWrap>

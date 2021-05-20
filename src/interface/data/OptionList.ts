@@ -1,5 +1,15 @@
 import {RequestMethod} from "../enum";
 
+export const ColorOption = [
+    {
+        value: "#171a1fff",
+        label: "默认背景色"
+    },
+    {
+        value: "#ffffffff",
+        label: "白色"
+    },
+]
 export const FontFamilyOption = [
     {
         value: "微软雅黑",

@@ -1,13 +1,20 @@
 import React from "react";
 import styled from "styled-components";
+import {Property} from "../../../../interface/entity";
+import CanvasConfig from "../ConfigPages/CanvasConfig";
 
-export default function ConfigContentCanvas(props: {}): JSX.Element {
+export default function ConfigContentCanvas(props: {
+    property: Property
+    setProperty: React.Dispatch<React.SetStateAction<Property>>
+}): JSX.Element {
+    const {property, setProperty} = props
 
     return (
         <>
             <ConfigManagerHead>页面设置</ConfigManagerHead>
             <ConfigManagerBody>
                 <PageConfig>
+                    <CanvasConfig property={property} updateProperty={setProperty}/>
                 </PageConfig>
             </ConfigManagerBody>
         </>
