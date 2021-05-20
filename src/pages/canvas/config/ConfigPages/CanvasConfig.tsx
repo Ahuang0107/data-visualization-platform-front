@@ -3,6 +3,7 @@ import {Property} from "../../../../interface/entity";
 import DoubleInputPropertyWithAddMinus from "./form/DoubleInputPropertyWithAddMinus";
 import {ColorOption} from "../../../../interface/data";
 import SelectProperty from "./form/SelectProperty";
+import SingleInputProperty from "./form/SingleInputProperty";
 
 export default function CanvasConfig(props: {
     property: Property
@@ -19,6 +20,14 @@ export default function CanvasConfig(props: {
 
     return (
         <>
+            <SingleInputProperty title={"项目名称"}
+                                 content={property.name}
+                                 changeContent={(name?: string) => {
+                                     setProperty({
+                                         ...property,
+                                         name: name ?? property.name
+                                     })
+                                 }}/>
             <DoubleInputPropertyWithAddMinus title={"画布尺寸"}
                                              numbers={{
                                                  number1: property.width,

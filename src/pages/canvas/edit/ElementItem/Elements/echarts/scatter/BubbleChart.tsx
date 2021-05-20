@@ -58,14 +58,6 @@ export default function BubbleChart(props: {
     const proportion = props.element.width / 1080
     const [main, setMain] = useState(document.getElementById(elementId))
     const option = {
-        title: {
-            textStyle: {
-                color: '#fff'
-            },
-            text: '1990 与 2015 年各国家人均寿命与 GDP',
-            left: '5%',
-            top: '3%'
-        },
         legend: {
             right: '10%',
             top: '3%',

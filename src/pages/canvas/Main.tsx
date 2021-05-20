@@ -114,25 +114,28 @@ export default function Main(props: {
             x: 100,
             y: 100,
         }
-        if (type === ElementType.BAR_WITH_BACKGROUND) {
-            element.barWithBackground = {
-                category: {
-                    data: ['2018', '2019', '2020', '2021'],
+        if (type === ElementType.DIGITAL_CARD_FLIPPER) {
+            element.digitalCardFlipper = {
+                content: "299,998",
+                size: 32,
+                title: {
+                    content: "翻牌器标题",
+                    constSize: 16,
+                    isTop: true,
                 },
-                series: [
-                    {
-                        data: [400, 200, 10, 180],
-                        type: 'bar',
-                    },
-                    {
-                        data: [170, 90, 120, 110],
-                        type: 'bar',
-                    },
-                    {
-                        data: [400, 200, 120, 180],
-                        type: 'line',
-                    },
-                ]
+                prefix: {
+                    content: "总计"
+                },
+                suffix: {
+                    content: "万"
+                }
+            }
+        }
+        if (type === ElementType.GENERAL_TITLE) {
+            element.generalTitle = {
+                content: "标题",
+                fontFamily: "微软雅黑",
+                fontSize: 24,
             }
         }
         setElementList([...elementList, element])
@@ -146,8 +149,10 @@ export default function Main(props: {
             case ElementType.DOUGHNUT_CHART_WITH_ROUNDED_CORNER:
                 updatePisChartData(data)
                 break
+            case ElementType.MULTIPLE_X_AXES:
+                updateLineChartData(data)
+                break
         }
-
     }
 
     // 更新柱状图的数据
@@ -181,6 +186,40 @@ export default function Main(props: {
         const newElement: Element = {
             ...focusElement!!,
             barWithBackground: barWithBackgroundData
+        }
+        updateElementNode(newElement)
+    }
+
+    // 更新折线图的数据
+    function updateLineChartData(data: any) {
+        const xAxisData = data.map((item: any) => item.year)
+        const yAxisData = data.map((item: any) => item.data)
+        let series: {
+            yCategory: string
+            data: number[]
+        }[] = []
+        const dataPropertyList = Object.keys(data[0].data[0])   //["value", "name"]
+        const dataPropertyListNum = data[0].data.length    //2
+        let x = 0
+        for (x = 0; x < dataPropertyListNum; x++) {
+            series.push({
+                data: [],
+                yCategory: "",
+            })
+        }
+        yAxisData.forEach((item: any, index: number) => {
+            item.forEach((item: any, index: number) => {
+                series[index].data.push(item[dataPropertyList[0]])
+                series[index].yCategory = item[dataPropertyList[1]]
+            })
+        })
+        const multipleXAxesData = {
+            xLabelList: xAxisData,
+            series: series
+        }
+        const newElement: Element = {
+            ...focusElement!!,
+            multipleXAxes: multipleXAxesData
         }
         updateElementNode(newElement)
     }

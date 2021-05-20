@@ -11,6 +11,7 @@ import BarWithBackgroundDatabase from "../DatabasePages/BarWithBackgroundDatabas
 import ComponentTitle from "../ConfigPages/form/ComponentTitle";
 import ConfigManagerTabs from "../ConfigTab/ConfigManagerTabs";
 import DoughnutChartDatabase from "../DatabasePages/DoughnutChartDatabase";
+import MultipleXAxesDatabase from "../DatabasePages/MultipleXAxesDatabase";
 
 export default function ConfigContentComp(props: {
     focusElement: Element | any
@@ -63,6 +64,10 @@ export default function ConfigContentComp(props: {
                                                   setDrawerShow={setDrawerShow}/>
             case ElementType.DOUGHNUT_CHART_WITH_ROUNDED_CORNER:
                 return <DoughnutChartDatabase element={element}
+                                              updateElementNode={updateElementNode}
+                                              setDrawerShow={setDrawerShow}/>
+            case ElementType.MULTIPLE_X_AXES:
+                return <MultipleXAxesDatabase element={element}
                                               updateElementNode={updateElementNode}
                                               setDrawerShow={setDrawerShow}/>
             default:

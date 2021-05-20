@@ -1,6 +1,7 @@
 import {ElementType} from "../enum";
 import {BarWithBackgroundDataType} from "./BarWithBackgroundDataType";
 import {DoughnutChartDataType} from "./DoughnutChartDataType";
+import {MultipleXAxesDataType} from "./MultipleXAxesDataType";
 
 /**
  * 组件元素的属性
@@ -46,6 +47,11 @@ export interface Element {
      * 折线柱图的数据结构
      */
     barWithBackground?: BarWithBackgroundDataType
+
+    /**
+     * 折线图的数据结构
+     */
+    multipleXAxes?: MultipleXAxesDataType
 
     /**
      * 饼图的数据结构
@@ -106,40 +112,4 @@ interface DigitalCardFlipperDateType {
     suffix: {
         content: string
     }
-}
-
-interface BarWithBackgroundDateType {
-    /**
-     * 文字颜色
-     */
-    textColor: string
-    /**
-     * x轴显示列名
-     */
-    xAxis: {
-        data: []
-    }
-    /**
-     * y轴显示的数据
-     */
-    series: SeriesDataType[]
-}
-
-interface SeriesDataType {
-    /**
-     * y轴的数值数组
-     */
-    data: []
-    /**
-     * 数值显示的方式，有bar，line等
-     */
-    type: string
-    /**
-     * 如果是bar规定其最大宽度
-     */
-    barMaxWidth: number
-    /**
-     * bar的背景颜色
-     */
-    backgroundColor: string
 }
