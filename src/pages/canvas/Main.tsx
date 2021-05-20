@@ -11,8 +11,17 @@ import EditPanel from "./edit/EditPanel";
 import ConfigPanel from "./config/ConfigPanel";
 import {useParams} from "react-router-dom";
 import Drawer from "../drawer/Drawer";
+import {History, LocationState} from "history";
 
-export default function Main(): JSX.Element {
+const emptyProperty: Property = {
+    name: "",
+    width: 1920,
+    height: 1080,
+    backgroundColor: "",
+}
+export default function Main(props: {
+    history: History<LocationState>
+}): JSX.Element {
     let {id} = useParams<{ id: string }>()
     //管理大屏编辑页面的面板展开
     const [panelShow, setPanelShow] = useState({
@@ -21,7 +30,7 @@ export default function Main(): JSX.Element {
         config: true
     })
     //管理画布本身的属性
-    const [property, setProperty] = useState<Property>()
+    const [property, setProperty] = useState<Property>(emptyProperty)
     //管理画布上的元素列表
     const [elementList, setElementList] = useState<Element[]>([])
     //管理画布上当前聚焦的元素
@@ -169,7 +178,8 @@ export default function Main(): JSX.Element {
                          projectId={id}
                          saveCanvas={saveCanvasData}
                          panelShow={panelShow}
-                         setPanelShow={setPanelShow}/>
+                         setPanelShow={setPanelShow}
+                         history={props.history}/>
             <EditMain>
                 <LayerPanel show={panelShow.layer}
                             elementList={elementList}

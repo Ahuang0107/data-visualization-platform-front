@@ -14,4 +14,9 @@ export interface Property {
      * 画布的高度
      */
     height: number
+
+    /**
+     * 画布背景颜色
+     */
+    backgroundColor: string
 }

@@ -5,17 +5,17 @@ export default function HeaderPanel(props: {}): JSX.Element {
     const [title, setTitle] = useState(true)
     return (
         <WrapperHeader>
-            <NavTitle>{title ? '我的数据源' : '我的大屏项目'}</NavTitle>
+            <NavTitle>{title ? '我的大屏项目' : '我的数据源'}</NavTitle>
             <TabGroupWrapper>
                 <TabWrapper isActive={title} onClick={() => {
                     setTitle(true)
                 }}>
-                    <TabText>数据源</TabText>
+                    <TabText>数据大屏</TabText>
                 </TabWrapper>
                 <TabWrapper isActive={!title} onClick={() => {
                     setTitle(false)
                 }}>
-                    <TabText>数据大屏</TabText>
+                    <TabText>数据源</TabText>
                 </TabWrapper>
             </TabGroupWrapper>
             <UserInfoWrapper></UserInfoWrapper>

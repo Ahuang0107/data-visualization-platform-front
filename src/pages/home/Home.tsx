@@ -44,6 +44,7 @@ export default function Home(props: {
                 name: "empty canvas project",
                 width: 2560,
                 height: 1080,
+                backgroundColor: "#171a1fff",
             }
         }).then(function (response) {
             if (response.status === 200) {

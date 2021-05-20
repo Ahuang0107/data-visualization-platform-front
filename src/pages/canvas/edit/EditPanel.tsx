@@ -4,7 +4,7 @@ import {Element, Property} from "../../../interface/entity";
 import Canvas from "./ElementItem/Canvas";
 
 export default function EditPanel(props: {
-    property: Property | any
+    property: Property
     elementList: Element[] | null
     focusElement: Element | undefined
     setFocusElement: React.Dispatch<React.SetStateAction<Element | undefined>>
@@ -43,7 +43,6 @@ const EditorPanelWrap = styled.div`
   position: relative;
   overflow: hidden;
   user-select: none;
-  background-color: #1d2127;
 `;
 
 const EditSlider = styled.div`

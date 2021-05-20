@@ -11,6 +11,7 @@ import {
     SaveIcon
 } from "../../../assets/icon";
 import RectangleButton from "./button/RectangleButton";
+import {History, LocationState} from "history";
 
 export default function HeaderPanel(props: {
     name?: String,
@@ -25,7 +26,8 @@ export default function HeaderPanel(props: {
         layer: boolean,
         component: boolean,
         config: boolean
-    }>>
+    }>>,
+    history: History<LocationState>
 }): JSX.Element {
     const {setPanelShow, panelShow, saveCanvas} = props
     return (
@@ -51,7 +53,7 @@ export default function HeaderPanel(props: {
                 </RectangleStateButton>
             </WrapperButton>
             <TitleWrap>
-                <BackIcon/>
+                <BackIcon onClick={() => props.history.push('/Home')}/>
                 <Title>{props.name}</Title>
             </TitleWrap>
             <WrapperButton>

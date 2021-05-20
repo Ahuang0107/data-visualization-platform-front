@@ -11,7 +11,7 @@ export default function PreviewCanvas(props: {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "rgba(0, 0, 0,0.2)",
+        background: props.property?.backgroundColor,
         boxShadow: "rgb(0 0 0 / 50%) 0 0 30px 0"
     }
     const elementList = props.elements?.map((element, index) => {
