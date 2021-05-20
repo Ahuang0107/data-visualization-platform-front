@@ -35,6 +35,21 @@ export default function ComponentPanel(props: {
             type: ElementType.BAR_WITH_BACKGROUND,
             img: DigitalCardFlipper,
         },
+        {
+            name: '折线图',
+            type: ElementType.MULTIPLE_X_AXES,
+            img: DigitalCardFlipper,
+        },
+        {
+            name: '饼图',
+            type: ElementType.DOUGHNUT_CHART_WITH_ROUNDED_CORNER,
+            img: DigitalCardFlipper,
+        },
+        {
+            name: '气泡图',
+            type: ElementType.BUBBLE_CHART,
+            img: DigitalCardFlipper,
+        },
     ]
     const componentItems = componentList.map((element, index) => (
         <ComponentItem key={index}
@@ -131,4 +146,6 @@ const ShowComponentPanel = styled.ul`
   height: 100%;
   background-color: var(--datav-panel-background-dark-color);
   align-items: center;
+
+  overflow-y: scroll;
 `

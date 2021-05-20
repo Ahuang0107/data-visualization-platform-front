@@ -31,7 +31,6 @@ const ComponentItemWrap = styled.li`
   background-color: #181a1c;
   border-radius: 5px;
   margin-top: 5px;
-  overflow: hidden;
   position: relative;
 
   &:hover {
