@@ -15,7 +15,7 @@ export default function MultipleXAxes(props: {
     const elementId = props.element.primaryKey.toString()
     const [main, setMain] = useState(document.getElementById(elementId))
     const colors = ['#5470C6', '#EE6666']
-    const xLabelList = props.element.multipleXAxes?.xLabelList ?? ['2016-1', '2016-2', '2016-3', '2016-4', '2016-5', '2016-6', '2016-7', '2016-8', '2016-9', '2016-10', '2016-11', '2016-12']
+    const xLabelList = props.element.multipleXAxes?.category ?? ['2016-1', '2016-2', '2016-3', '2016-4', '2016-5', '2016-6', '2016-7', '2016-8', '2016-9', '2016-10', '2016-11', '2016-12']
     const data = props.element.multipleXAxes?.series ?? [
         {
             yCategory: "2015 降水量",

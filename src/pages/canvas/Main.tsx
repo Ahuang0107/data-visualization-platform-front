@@ -214,7 +214,7 @@ export default function Main(props: {
             })
         })
         const multipleXAxesData = {
-            xLabelList: xAxisData,
+            category: xAxisData,
             series: series
         }
         const newElement: Element = {

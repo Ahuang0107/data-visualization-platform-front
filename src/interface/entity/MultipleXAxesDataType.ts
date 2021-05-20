@@ -1,5 +1,5 @@
 export interface MultipleXAxesDataType {
-    xLabelList: string[]
+    category: string[]
     series: {
         yCategory: string,
         data: number[]
