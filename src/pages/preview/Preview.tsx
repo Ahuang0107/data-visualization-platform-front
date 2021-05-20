@@ -14,6 +14,9 @@ export default function Preview(): JSX.Element {
     useEffect(() => {
         getElementListData()
     }, [])
+    useEffect(() => {
+        document.title = '预览 - ' + property?.name as string
+    }, [property])
 
     // 根据大屏ID获取大屏数据
     function getElementListData() {
