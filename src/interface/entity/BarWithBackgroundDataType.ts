@@ -1,8 +1,8 @@
 export interface BarWithBackgroundDataType {
-    xAxis: {
+    category: {
         data: string[]
     }
-    yAxis: {
+    series: {
         data: number[]
         type: string
     }[]

@@ -25,6 +25,7 @@ export default function Preview(): JSX.Element {
                 if (response.status == 200) {
                     if (response.data.code === 200) {
                         setProperty(response.data.data.property)
+                        console.log(response.data.data.elements)
                         setElementList(response.data.data.elements)
                     } else {
                         alert("获取项目详情出错")

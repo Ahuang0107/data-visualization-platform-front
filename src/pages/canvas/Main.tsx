@@ -28,8 +28,6 @@ export default function Main(): JSX.Element {
     const [focusElement, setFocusElement] = useState<Element>()
     //管理抽屉面板的展开
     const [drawerShow, setDrawerShow] = useState(false)
-    //管理每次添加数据源后保存的数据
-    const [responseData, setResponseData] = useState<any>()
 
     useEffect(() => {
         getCanvasData()
@@ -58,6 +56,7 @@ export default function Main(): JSX.Element {
 
     // 保存大屏数据
     function saveCanvasData() {
+        console.log(elementList)
         axios.put('http://localhost:9090/api/canvas/' + id, {
             userId: localStorage.getItem("userId"),
             property: property,
@@ -109,10 +108,10 @@ export default function Main(): JSX.Element {
         }
         if (type === ElementType.BAR_WITH_BACKGROUND) {
             element.barWithBackground = {
-                xAxis: {
+                category: {
                     data: ['2018', '2019', '2020', '2021'],
                 },
-                yAxis: [
+                series: [
                     {
                         data: [400, 200, 10, 180],
                         type: 'bar',
@@ -145,10 +144,10 @@ export default function Main(): JSX.Element {
             radioData.push(item.radio)
         })
         const barWithBackgroundData = {
-            xAxis: {
+            category: {
                 data: xAxisData,
             },
-            yAxis: [
+            series: [
                 {
                     data: totalData,
                     type: "bar",
@@ -167,7 +166,11 @@ export default function Main(): JSX.Element {
                 },
             ]
         }
-        console.log(barWithBackgroundData)
+        const newElement: Element = {
+            ...focusElement!!,
+            barWithBackground: barWithBackgroundData
+        }
+        updateElementNode(newElement)
     }
 
     return (

@@ -14,10 +14,10 @@ export default function BarWithBackground(props: {
 }): JSX.Element {
     const elementId = props.element.primaryKey
     const [main, setMain] = useState(document.getElementById(props.element.primaryKey))
-    const xAxis = props.element.barWithBackground?.xAxis ?? {
+    const xAxis = props.element.barWithBackground?.category ?? {
         data: ['一季度', '二季度', '三季度', '四季度'],
     }
-    const yAxis = props.element.barWithBackground?.yAxis ?? [
+    const yAxis = props.element.barWithBackground?.series ?? [
         {
             data: [400, 200, 10, 180],
             type: 'bar',
@@ -31,6 +31,24 @@ export default function BarWithBackground(props: {
             type: 'line',
         },
     ]
+    const yAxisData = yAxis.map((item: any) => {
+        if (item.type === "bar") {
+            return {
+                data: item.data,
+                type: "bar",
+                showBackground: true,
+                barMaxWidth: 20,
+                backgroundStyle: {
+                    color: 'rgba(180, 180, 180, 0.2)'
+                }
+            }
+        } else {
+            return {
+                data: item.data,
+                type: "line",
+            }
+        }
+    })
     const option = {
         textStyle: {
             color: '#fff'
@@ -41,32 +59,8 @@ export default function BarWithBackground(props: {
         },
         yAxis: {
             type: 'value'
-        }
-        ,
-        series: [
-            {
-                data: yAxis[0].data,
-                type: yAxis[0].type,
-                showBackground: true,
-                barMaxWidth: 20,
-                backgroundStyle: {
-                    color: 'rgba(180, 180, 180, 0.2)'
-                }
-            },
-            {
-                data: yAxis[1].data,
-                type: yAxis[1].type,
-                showBackground: true,
-                barMaxWidth: 20,
-                backgroundStyle: {
-                    color: 'rgba(180, 180, 180, 0.2)'
-                }
-            },
-            {
-                data: yAxis[2].data,
-                type: yAxis[2].type,
-            }
-        ]
+        },
+        series: yAxisData
     }
     useEffect(() => {
         const node = document.getElementById(elementId)
