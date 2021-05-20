@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import RectangleStateButton from "./button/RectangleStateButton";
 import {
+    BackIcon,
     BrowserIcon,
     ComponentPanelIcon,
     ConfigPanelIcon,
@@ -50,6 +51,7 @@ export default function HeaderPanel(props: {
                 </RectangleStateButton>
             </WrapperButton>
             <TitleWrap>
+                <BackIcon/>
                 <Title>{props.name}</Title>
             </TitleWrap>
             <WrapperButton>

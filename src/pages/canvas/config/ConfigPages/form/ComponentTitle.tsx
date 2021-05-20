@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {BackIcon} from "../../../../../assets/icon/src/ConfigIcon/ConfigItem";
+import {BackIcon} from "../../../../../assets/icon";
 
 export default function ComponentTitle(props: {
     name: string

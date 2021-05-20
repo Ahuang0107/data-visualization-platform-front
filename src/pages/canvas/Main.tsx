@@ -56,7 +56,6 @@ export default function Main(): JSX.Element {
 
     // 保存大屏数据
     function saveCanvasData() {
-        console.log(elementList)
         axios.put('http://localhost:9090/api/canvas/' + id, {
             userId: localStorage.getItem("userId"),
             property: property,
@@ -133,38 +132,29 @@ export default function Main(): JSX.Element {
     function updateResponseData(data: any) {
         const xAxisData = data.map((item: any) => item.year)
         const yAxisData = data.map((item: any) => item.data)
-        let totalData: any[] = []
-        let maleData: any[] = []
-        let femaleData: any[] = []
-        let radioData: any[] = []
+        let series: {
+            data: number[]
+            type: string
+        }[] = []
+        const dataPropertyList = Object.keys(data[0].data)
+        const dataPropertyListNum = Object.keys(data[0].data).length
+        let x = 0
+        for (x = 0; x < dataPropertyListNum; x++) {
+            series.push({
+                data: [],
+                type: "bar",
+            })
+        }
         yAxisData.forEach((item: any, index: number) => {
-            totalData.push(item.total)
-            maleData.push(item.male)
-            femaleData.push(item.female)
-            radioData.push(item.radio)
+            for (x = 0; x < dataPropertyListNum; x++) {
+                series[x].data.push(item[dataPropertyList[x]])
+            }
         })
         const barWithBackgroundData = {
             category: {
                 data: xAxisData,
             },
-            series: [
-                {
-                    data: totalData,
-                    type: "bar",
-                },
-                {
-                    data: maleData,
-                    type: "bar",
-                },
-                {
-                    data: femaleData,
-                    type: "bar",
-                },
-                {
-                    data: radioData,
-                    type: "line",
-                },
-            ]
+            series: series
         }
         const newElement: Element = {
             ...focusElement!!,
