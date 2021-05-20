@@ -6,6 +6,7 @@ import Card from "./card/Card";
 import axios from "axios";
 import {CanvasInfo} from "../../interface/entity/CanvasInfo";
 import {History, LocationState} from "history";
+import AddCard from "./card/AddCard";
 
 export default function Home(props: {
     history: History<LocationState>
@@ -36,6 +37,28 @@ export default function Home(props: {
             })
     }
 
+    function createCanvas() {
+        axios.post('http://localhost:9090/api/canvas/', {
+            userId: localStorage.getItem("userId"),
+            property: {
+                name: "empty canvas project",
+                width: 2560,
+                height: 1080,
+            }
+        }).then(function (response) {
+            if (response.status === 200) {
+                if (response.data.code === 200) {
+                    alert("创建项目成功")
+                    getCanvasList()
+                } else {
+                    alert("创建项目失败")
+                }
+            }
+        }).catch(function (error) {
+            console.log(error)
+        })
+    }
+
     return (
         <HomeWrap>
             <HeaderPanel/>
@@ -44,6 +67,7 @@ export default function Home(props: {
                     {canvasInfoList.map((item, index) =>
                         <Card key={index} content={item} history={props.history}/>
                     )}
+                    <AddCard onClick={createCanvas}/>
                 </CardContainer>
             </MainWrap>
         </HomeWrap>

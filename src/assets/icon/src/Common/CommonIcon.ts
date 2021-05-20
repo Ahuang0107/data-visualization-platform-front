@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {BiWindowOpen, CgBrowser, CgCloseO, FiSave} from "react-icons/all";
+import {BiWindowOpen, CgBrowser, CgCloseO, FiSave, IoMdAddCircle} from "react-icons/all";
 
 //保存icon
 export const SaveIcon = styled(FiSave)`
@@ -24,4 +24,9 @@ export const CloseIcon = styled(CgCloseO)`
   width: 20px;
   height: 20px;
   color: #e6e6e6;
+`
+export const AddIcon = styled(IoMdAddCircle)`
+  width: 64px;
+  height: 64px;
+  color: var(--datav-gray-color);
 `

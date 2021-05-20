@@ -13,22 +13,27 @@ export default function ComponentPanel(props: {
         {
             name: '单张图片',
             type: ElementType.SINGLE_IMAGE,
-            img: SingleImage
+            img: SingleImage,
         },
         {
             name: '自定义背景块',
             type: ElementType.COLOR_BLOCK,
-            img: ColorBlock
+            img: ColorBlock,
         },
         {
             name: '通用标题',
             type: ElementType.GENERAL_TITLE,
-            img: GeneralTitle
+            img: GeneralTitle,
         },
         {
             name: '数字翻牌器',
             type: ElementType.DIGITAL_CARD_FLIPPER,
-            img: DigitalCardFlipper
+            img: DigitalCardFlipper,
+        },
+        {
+            name: '折线柱图',
+            type: ElementType.BAR_WITH_BACKGROUND,
+            img: DigitalCardFlipper,
         },
     ]
     const componentItems = componentList.map((element, index) => (
@@ -124,6 +129,6 @@ const ShowComponentPanel = styled.ul`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background-color: #0a0b0d;
+  background-color: var(--datav-panel-background-dark-color);
   align-items: center;
 `
