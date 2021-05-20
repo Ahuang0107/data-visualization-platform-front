@@ -11,6 +11,6 @@ export default function JsonViewer(props: {
     return (
         <ReactJson src={code}
                    theme={"tomorrow"}
-                   style={{minHeight: "200px"}}/>
+                   style={{minHeight: "240px", background: "transparent"}}/>
     )
 }

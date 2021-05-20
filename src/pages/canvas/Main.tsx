@@ -28,6 +28,8 @@ export default function Main(): JSX.Element {
     const [focusElement, setFocusElement] = useState<Element>()
     //管理抽屉面板的展开
     const [drawerShow, setDrawerShow] = useState(false)
+    //管理每次添加数据源后保存的数据
+    const [responseData, setResponseData] = useState<any>()
 
     useEffect(() => {
         getCanvasData()
@@ -65,7 +67,7 @@ export default function Main(): JSX.Element {
                 if (response.data.code === 200) {
                     alert("保存项目成功")
                 } else {
-                    alert("保存项目成功失败")
+                    alert("保存项目失败")
                 }
             }
         }).catch(function (error) {
@@ -105,7 +107,67 @@ export default function Main(): JSX.Element {
             x: 100,
             y: 100,
         }
+        if (type === ElementType.BAR_WITH_BACKGROUND) {
+            element.barWithBackground = {
+                xAxis: {
+                    data: ['2018', '2019', '2020', '2021'],
+                },
+                yAxis: [
+                    {
+                        data: [400, 200, 10, 180],
+                        type: 'bar',
+                    },
+                    {
+                        data: [170, 90, 120, 110],
+                        type: 'bar',
+                    },
+                    {
+                        data: [400, 200, 120, 180],
+                        type: 'line',
+                    },
+                ]
+            }
+        }
         setElementList([...elementList, element])
+    }
+
+    function updateResponseData(data: any) {
+        const xAxisData = data.map((item: any) => item.year)
+        const yAxisData = data.map((item: any) => item.data)
+        let totalData: any[] = []
+        let maleData: any[] = []
+        let femaleData: any[] = []
+        let radioData: any[] = []
+        yAxisData.forEach((item: any, index: number) => {
+            totalData.push(item.total)
+            maleData.push(item.male)
+            femaleData.push(item.female)
+            radioData.push(item.radio)
+        })
+        const barWithBackgroundData = {
+            xAxis: {
+                data: xAxisData,
+            },
+            yAxis: [
+                {
+                    data: totalData,
+                    type: "bar",
+                },
+                {
+                    data: maleData,
+                    type: "bar",
+                },
+                {
+                    data: femaleData,
+                    type: "bar",
+                },
+                {
+                    data: radioData,
+                    type: "line",
+                },
+            ]
+        }
+        console.log(barWithBackgroundData)
     }
 
     return (
@@ -131,7 +193,8 @@ export default function Main(): JSX.Element {
                              focusElement={focusElement}
                              updateElementNode={updateElementNode}
                              setDrawerShow={setDrawerShow}/>
-                {drawerShow ? <Drawer setDrawerShow={setDrawerShow}/> : null}
+                {drawerShow ? <Drawer setDrawerShow={setDrawerShow}
+                                      saveResponseData={updateResponseData}/> : null}
             </EditMain>
         </MainPanel>
     )

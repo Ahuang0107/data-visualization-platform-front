@@ -1,4 +1,5 @@
 import {ElementType} from "../enum";
+import {BarWithBackgroundDataType} from "./BarWithBackgroundDataType";
 
 /**
  * 组件元素的属性
@@ -39,6 +40,11 @@ export interface Element {
      * 数字翻牌器组件的属性
      */
     digitalCardFlipper?: DigitalCardFlipperDateType
+
+    /**
+     * 折线柱图的数据结构
+     */
+    barWithBackground?: BarWithBackgroundDataType
 }
 
 interface GeneralTitleDataType {
