@@ -1,17 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import RectangleStateButton from "./button/RectangleStateButton";
 import {
     BackIcon,
     BrowserIcon,
-    ComponentPanelIcon,
-    ConfigPanelIcon,
-    LayerPanelIcon,
     PublishIcon,
     SaveIcon
 } from "../../../assets/icon";
-import RectangleButton from "./button/RectangleButton";
 import {History, LocationState} from "history";
+import {RectangleStateButton, RectangleButton, LayerIcon, SideBarIcon, ModuleIcon} from 'confused'
 
 export default function HeaderPanel(props: {
     name?: String,
@@ -37,19 +33,19 @@ export default function HeaderPanel(props: {
                 <RectangleStateButton onClick={() => {
                     setPanelShow({...panelShow, layer: !panelShow.layer})
                 }}>
-                    <LayerPanelIcon/>
+                    <LayerIcon/>
                 </RectangleStateButton>
                 {/*组件面板展开按钮*/}
                 <RectangleStateButton onClick={() => {
                     setPanelShow({...panelShow, component: !panelShow.component})
                 }}>
-                    <ComponentPanelIcon/>
+                    <ModuleIcon/>
                 </RectangleStateButton>
                 {/*属性面板展开按钮*/}
                 <RectangleStateButton onClick={() => {
                     setPanelShow({...panelShow, config: !panelShow.config})
                 }}>
-                    <ConfigPanelIcon/>
+                    <SideBarIcon/>
                 </RectangleStateButton>
             </WrapperButton>
             <TitleWrap>

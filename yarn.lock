@@ -4909,6 +4909,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"confused@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "confused@npm:1.0.6"
+  dependencies:
+    react: ^17.0.2
+    react-dom: ^17.0.2
+    styled-components: ^5.3.0
+  checksum: d3d0c6be3533b3919990e8b89fde8ea05040291246ecb39286a573aaffe12387a35a0e3222a96df0feab6ac116ffdb70c5e6b028fe4f236e7a71c3126dc2534e
+  languageName: node
+  linkType: hard
+
 "confusing-browser-globals@npm:^1.0.10":
   version: 1.0.10
   resolution: "confusing-browser-globals@npm:1.0.10"
@@ -5159,6 +5170,7 @@ __metadata:
     "@types/react-router-dom": ^5.1.7
     "@types/styled-components": ^5.1.9
     axios: ^0.21.1
+    confused: ^1.0.6
     echarts: ^5.1.1
     react: ^17.0.2
     react-dom: ^17.0.2
