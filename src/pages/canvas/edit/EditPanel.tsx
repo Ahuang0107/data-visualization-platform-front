@@ -4,10 +4,10 @@ import {Element, Property} from "../../../interface/entity";
 import Canvas from "./ElementItem/Canvas";
 
 export default function EditPanel(props: {
-    property: Property | any
+    property: Property
     elementList: Element[] | null
-    focusElement: Element | any
-    setFocusElement: React.Dispatch<React.SetStateAction<Element>>
+    focusElement: Element | null
+    setFocusElement: React.Dispatch<React.SetStateAction<Element | null>>
     updateElementNode: (data: Element) => void
 }): JSX.Element {
     const {focusElement, setFocusElement, updateElementNode} = props
@@ -43,7 +43,6 @@ const EditorPanelWrap = styled.div`
   position: relative;
   overflow: hidden;
   user-select: none;
-  background-color: #1d2127;
 `;
 
 const EditSlider = styled.div`

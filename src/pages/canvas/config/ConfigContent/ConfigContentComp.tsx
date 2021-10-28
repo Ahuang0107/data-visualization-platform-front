@@ -10,13 +10,16 @@ import BarWithBackgroundConfig from "../ConfigPages/BarWithBackgroundConfig";
 import BarWithBackgroundDatabase from "../DatabasePages/BarWithBackgroundDatabase";
 import ComponentTitle from "../ConfigPages/form/ComponentTitle";
 import ConfigManagerTabs from "../ConfigTab/ConfigManagerTabs";
+import DoughnutChartDatabase from "../DatabasePages/DoughnutChartDatabase";
+import MultipleXAxesDatabase from "../DatabasePages/MultipleXAxesDatabase";
 
 export default function ConfigContentComp(props: {
     focusElement: Element | any
+    setFocusElement: React.Dispatch<React.SetStateAction<Element | null>>
     updateElementNode: (data: Element) => void
     setDrawerShow: Dispatch<SetStateAction<boolean>>
 }): JSX.Element {
-    const {focusElement, updateElementNode, setDrawerShow} = props
+    const {focusElement, setFocusElement, updateElementNode, setDrawerShow} = props
     // 当前显示的tab面板编号
     const [activeTab, setActiveTab] = useState(1)
     // 根据当前聚焦的元素生成对应的属性面板
@@ -59,6 +62,14 @@ export default function ConfigContentComp(props: {
                 return <BarWithBackgroundDatabase element={element}
                                                   updateElementNode={updateElementNode}
                                                   setDrawerShow={setDrawerShow}/>
+            case ElementType.DOUGHNUT_CHART_WITH_ROUNDED_CORNER:
+                return <DoughnutChartDatabase element={element}
+                                              updateElementNode={updateElementNode}
+                                              setDrawerShow={setDrawerShow}/>
+            case ElementType.MULTIPLE_X_AXES:
+                return <MultipleXAxesDatabase element={element}
+                                              updateElementNode={updateElementNode}
+                                              setDrawerShow={setDrawerShow}/>
             default:
                 return <></>
         }
@@ -70,7 +81,7 @@ export default function ConfigContentComp(props: {
                                updateActiveTab={setActiveTab}/>
             <ConfigManagerBody>
                 <PageConfig>
-                    <ComponentTitle name={focusElement.name}/>
+                    <ComponentTitle name={focusElement.name} setFocusElement={setFocusElement}/>
                     {pageContent}
                 </PageConfig>
             </ConfigManagerBody>

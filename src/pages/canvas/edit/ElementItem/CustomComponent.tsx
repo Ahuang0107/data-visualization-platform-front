@@ -14,8 +14,8 @@ import {removePx} from "../../../../utils";
 
 export default function CustomComponent(props: {
     element: Element
-    focusElement: Element | any
-    setFocusElement?: React.Dispatch<React.SetStateAction<Element>>
+    focusElement: Element | null
+    setFocusElement: React.Dispatch<React.SetStateAction<Element | null>>
     updateElementNode: (data: Element) => void
 }): JSX.Element {
     const {focusElement, setFocusElement, updateElementNode} = props
@@ -26,7 +26,9 @@ export default function CustomComponent(props: {
         updateElementNode(element)
     }, [element])
     useEffect(() => {
-        if (focusElement.primaryKey === element.primaryKey) {
+        if (focusElement?.primaryKey === element.primaryKey) {
+            //todo("这里的setElement会影响设置了config后画布上的元素会不会响应变化，还不清楚为什么不能删")
+            setElement(focusElement)
             setShowDashed(true)
         } else {
             setShowDashed(false)

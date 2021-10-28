@@ -5,6 +5,7 @@ import {History, LocationState} from "history";
 import {Button} from "../../packages/button";
 import {LoginBackgroundImage} from "../../assets/image";
 
+document.title = '数据可视化平台 - 登录'
 export default function Login(props: {
     history: History<LocationState>
 }): JSX.Element {
@@ -45,14 +46,15 @@ export default function Login(props: {
                 </Col>
                 <Col>
                     <Button onClick={() => {
-                        axios.post('http://localhost:9090/api/user', loginForm)
+                        axios.post('http://localhost:9090/api/user/login', loginForm)
                             .then(function (response) {
                                 if (response.status === 200) {
-                                    if (response.data) {
-                                        localStorage.setItem("userId", response.data.id)
-                                        props.history.push('Home')
+                                    if (response.data.code === 200) {
+                                        localStorage.setItem("userId", response.data.data)
+                                        localStorage.setItem("userName", loginForm.username)
+                                        props.history.push('/Home')
                                     } else {
-                                        alert("用户名或者密码错误")
+                                        alert(response.data.message)
                                     }
                                 }
                             })
@@ -86,13 +88,13 @@ const Centered = styled.div`
   justify-content: center;
   user-select: none;
   height: 100%;
-  max-width: 320px;
+  max-width: 600px;
   margin-left: 100px;
 `
 const Img = styled.img`
   display: block;
   height: auto;
-  max-width: 800px;
+  max-width: 600px;
   user-select: none;
 `
 const Col = styled.div`

@@ -1,16 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import RectangleButton from "./button/RectangleButton";
 import {
+    BackIcon,
     BrowserIcon,
-    ComponentPanelIcon,
-    ConfigPanelIcon,
-    LayerPanelIcon,
     PublishIcon,
     SaveIcon
 } from "../../../assets/icon";
+import {History, LocationState} from "history";
+import {RectangleStateButton, RectangleButton, LayerIcon, SideBarIcon, ModuleIcon} from 'confused'
 
 export default function HeaderPanel(props: {
+    name?: String,
+    projectId?: String,
+    saveCanvas: () => void,
     panelShow: {
         layer: boolean,
         component: boolean,
@@ -20,42 +22,46 @@ export default function HeaderPanel(props: {
         layer: boolean,
         component: boolean,
         config: boolean
-    }>>
+    }>>,
+    history: History<LocationState>
 }): JSX.Element {
-    const {setPanelShow, panelShow} = props
+    const {setPanelShow, panelShow, saveCanvas} = props
     return (
         <WrapperHeader>
             <WrapperButton>
                 {/*图层面板展开按钮*/}
-                <RectangleButton onClick={() => {
+                <RectangleStateButton onClick={() => {
                     setPanelShow({...panelShow, layer: !panelShow.layer})
                 }}>
-                    <LayerPanelIcon/>
-                </RectangleButton>
+                    <LayerIcon/>
+                </RectangleStateButton>
                 {/*组件面板展开按钮*/}
-                <RectangleButton onClick={() => {
+                <RectangleStateButton onClick={() => {
                     setPanelShow({...panelShow, component: !panelShow.component})
                 }}>
-                    <ComponentPanelIcon/>
-                </RectangleButton>
+                    <ModuleIcon/>
+                </RectangleStateButton>
                 {/*属性面板展开按钮*/}
-                <RectangleButton onClick={() => {
+                <RectangleStateButton onClick={() => {
                     setPanelShow({...panelShow, config: !panelShow.config})
                 }}>
-                    <ConfigPanelIcon/>
-                </RectangleButton>
+                    <SideBarIcon/>
+                </RectangleStateButton>
             </WrapperButton>
-            <Title>Data-Visualization-Platform</Title>
+            <TitleWrap>
+                <BackIcon onClick={() => props.history.push('/Home')}/>
+                <Title>{props.name}</Title>
+            </TitleWrap>
             <WrapperButton>
                 {/*保存按钮*/}
                 <RectangleButton onClick={() => {
-                    console.log("点击保存按钮")
+                    saveCanvas()
                 }}>
                     <SaveIcon/>
                 </RectangleButton>
                 {/*浏览按钮*/}
                 <RectangleButton onClick={() => {
-                    console.log("点击浏览按钮")
+                    window.open('http://localhost:3000/Preview/' + props.projectId)
                 }}>
                     <BrowserIcon/>
                 </RectangleButton>
@@ -86,7 +92,12 @@ const WrapperButton = styled.div`
   margin: 0 15px;
   display: flex;
 `
-const Title = styled.p`
+const TitleWrap = styled.div`
+  display: flex;
+  align-items: center;
+`
+const Title = styled.h1`
   font-size: 14px;
   color: inherit;
+  padding-bottom: 2px;
 `

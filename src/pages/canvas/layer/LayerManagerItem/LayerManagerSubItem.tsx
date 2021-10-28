@@ -8,14 +8,14 @@ export default function LayerManagerSubItem(props: {
     element: Element
     show: boolean
     retract: number
-    focusElement: Element | any
-    setFocusElement: React.Dispatch<React.SetStateAction<Element>>
+    focusElement: Element | null
+    setFocusElement: React.Dispatch<React.SetStateAction<Element | null>>
 }): JSX.Element {
     const {focusElement, setFocusElement} = props
     const [isFocused, setIsFocused] = useState<boolean>(false)
     const icon = getLayerIcon(props.element.type)
     useEffect(() => {
-        if (focusElement.primaryKey === props.element.primaryKey) {
+        if (focusElement?.primaryKey === props.element.primaryKey) {
             setIsFocused(true)
         } else {
             setIsFocused(false)

@@ -50,6 +50,7 @@ textarea {
 
 :root {
   --datav-panel-color: #1d2127;
+  --datav-panel-item-color: #181a1c;
   --datav-panel-item-bg: #1b1f25;
   --datav-panel-title-bg: #2E343C;
   --datav-panel-outline-color: #000000;

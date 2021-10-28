@@ -4,38 +4,38 @@ import {Element, Property} from "../../../../interface/entity";
 import CustomComponent from "./CustomComponent";
 
 export default function Canvas(props: {
-    property: Property | any
+    property: Property
     elements: Element[] | null
-    focusElement: Element | any
-    setFocusElement?: React.Dispatch<React.SetStateAction<Element>>
+    focusElement: Element | null
+    setFocusElement: React.Dispatch<React.SetStateAction<Element | null>>
     updateElementNode: (data: Element) => void
 }): JSX.Element {
     const {focusElement, setFocusElement, updateElementNode} = props
     const [scale, setScale] = useState({
-        width: 1920,
-        height: 1080,
         x: 0,
         y: 0
     })
     const [disableDragging, setDisableDragging] = useState(true)
     const [enableResizing] = useState(false)
+
+    document.addEventListener('keydown', function (e) {
+        if (e.code === 'Space') {
+            setDisableDragging(false)
+        }
+    })
+    document.addEventListener('keyup', function (e) {
+        if (e.code === 'Space') {
+            setDisableDragging(true)
+        }
+    })
+
     const style = {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "rgba(0, 0, 0,0.2)",
+        background: props.property.backgroundColor,
         boxShadow: "rgb(0 0 0 / 50%) 0 0 30px 0"
     }
-    // document.addEventListener('keydown', function (e) {
-    //     if (e.code === 'Space') {
-    //         setDisableDragging(false)
-    //     }
-    // });
-    // document.addEventListener('keyup', function (e) {
-    //     if (e.code === 'Space') {
-    //         setDisableDragging(true)
-    //     }
-    // });
     const elementList = props.elements?.map((element, index) => {
         return <CustomComponent key={index} element={element}
                                 focusElement={focusElement}
@@ -44,18 +44,11 @@ export default function Canvas(props: {
     })
     return (
         <Rnd style={style}
-             size={{width: scale.width, height: scale.height}}
+             size={{width: props.property?.width ?? 0, height: props.property?.height ?? 0}}
              position={{x: scale.x, y: scale.y}}
-            // onDragStop={(e, d) => {
-            //     setScale({...scale, x: d.lastX, y: d.lastY});
-            // }}
-            // onResizeStop={(e, direction, ref, delta, position) => {
-            //     setScale({
-            //         width: Number(ref.style.width),
-            //         height: Number(ref.style.height),
-            //         ...position
-            //     });
-            // }}
+             onDragStop={(e, d) => {
+                 setScale({...scale, x: d.lastX, y: d.lastY});
+             }}
              disableDragging={disableDragging}
              enableResizing={enableResizing}
         >

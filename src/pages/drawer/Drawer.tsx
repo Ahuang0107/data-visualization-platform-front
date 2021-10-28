@@ -9,11 +9,13 @@ import JsonViewer from "./JsonViewer";
 
 export default function Drawer(props: {
     setDrawerShow: Dispatch<SetStateAction<boolean>>
+    saveResponseData: (data: any) => void
 }): JSX.Element {
-    const {setDrawerShow} = props
+    const {setDrawerShow, saveResponseData} = props
     const [dataSourceType, setDatasourceType] = useState(1)
     const [requestType, setRequestType] = useState(1)
     const [url, setUrl] = useState("")
+    // 获得的请求数据
     const [responseData, setResponseData] = useState({})
     const updateDatasourceType = function (value: number | string | boolean) {
         if (typeof value == "string") {
@@ -56,7 +58,14 @@ export default function Drawer(props: {
                 axios.get(url)
                     .then(function (response) {
                         if (response.status == 200) {
-                            setResponseData(response.data)
+                            if (response.data.code == 200) {
+                                setResponseData(response.data.data)
+                                alert("请求数据成功")
+                            } else {
+                                alert("接口返回数据失败")
+                            }
+                        } else {
+                            alert("访问接口失败")
                         }
                     })
                     .catch(function (error) {
@@ -64,7 +73,7 @@ export default function Drawer(props: {
                     })
                 break
             default:
-                throw Error("非法请求方式")
+                alert("暂不支持此请求方式")
         }
     }
 
@@ -116,12 +125,17 @@ export default function Drawer(props: {
                     <DSApi>
                         <p>相应结果：</p>
                         <DatasourceSelect>
-                            <DataInputNumber>
+                            <DataShow>
                                 <DataShowWrap>
                                     <JsonViewer code={responseData}/>
                                 </DataShowWrap>
-                            </DataInputNumber>
+                            </DataShow>
                         </DatasourceSelect>
+                    </DSApi>
+                    <DSApi>
+                        <StripButton onClick={() => saveResponseData(responseData)}>
+                            <span>保存数据</span>
+                        </StripButton>
                     </DSApi>
                 </DrawerBody>
             </DrawerMain>
@@ -223,8 +237,19 @@ const DSApi = styled.div`
 `
 const DataShowWrap = styled.div`
   width: 100%;
-  height: 200px;
+  height: 240px;
+  border: 1px solid var(--datav-panel-border-color);
+  padding: 5px;
+  box-sizing: content-box;
+  user-select: none;
+  position: relative;
   overflow-y: scroll;
+`
+const DataShow = styled.div`
+  height: 100%;
+  border: none;
+  display: flex;
+  box-sizing: border-box;
 `
 const DataInputNumber = styled.div`
   background: var(--datav-gui-component-background-color);

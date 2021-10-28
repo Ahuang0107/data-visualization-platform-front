@@ -6,7 +6,6 @@ import {
     DotChartIcon,
     ImageIcon,
     LineChartIcon,
-    MapIcon,
     PieChartIcon,
     TextIcon
 } from "../../../../assets/icon";
@@ -26,8 +25,6 @@ export const getElement = (type: ElementType) => {
             return <LineChartIcon/>
         case ElementType.BAR_WITH_BACKGROUND:
             return <BarChartIcon/>
-        case ElementType.BUS_LINE:
-            return <MapIcon/>
         case ElementType.DOUGHNUT_CHART_WITH_ROUNDED_CORNER:
             return <PieChartIcon/>
         case ElementType.BUBBLE_CHART:
